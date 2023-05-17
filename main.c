@@ -7,7 +7,7 @@ const int columnas=3;
 void cargarMatriz(int matriz[filas][columnas]);
 void mostrarMatriz(int matriz[filas][columnas]);
 void cargarMatrizRandom(int matriz[filas][columnas], int random[filas][columnas]);
-float promedioMatriz(float matriz[filas][columnas]);
+float promedioMatriz(int matriz[filas][columnas]);
 
 int main()
 {
@@ -29,7 +29,7 @@ int main()
     suma = sumarMatriz(matriz);
     printf("La suma de la matriz de orden 'mxn' es de: %d", suma);
 
-    promedio = promedioMatriz(matrizFloat);
+    promedio = promedioMatriz(matriz);
     printf("El promedio de la matriz de orden 'mxn' es de: %f", promedio);
 
 }
@@ -110,7 +110,7 @@ int sumarMatriz(int matriz[filas][columnas]){
     return suma;
 }
 
-float promedioMatriz(float matriz[filas][columnas]){
+float promedioMatriz(int matriz[filas][columnas]){
 
     int i;
     int j;
@@ -127,8 +127,6 @@ float promedioMatriz(float matriz[filas][columnas]){
 
     }
 
-    promedio = suma / (filas+columnas);
+    promedio = suma / (filas * columnas);
 
     return promedio;
-
-}
