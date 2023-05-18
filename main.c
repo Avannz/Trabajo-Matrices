@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const int filas=3;
-const int columnas=3;
+const int filas=2;
+const int columnas=2;
 
 void cargarMatriz(int matriz[filas][columnas]);
 void mostrarMatriz(int matriz[filas][columnas]);
 void cargarMatrizRandom(int matriz[filas][columnas], int random[filas][columnas]);
 float promedioMatriz(int matriz[filas][columnas]);
+int buscarMatriz(int matriz[filas][columnas], int dato);
 
 int main()
 {
@@ -15,8 +16,9 @@ int main()
     int matrizRandom[filas][columnas];
     int matrizFloat[filas][columnas];
     int suma;
+    int flag;
+    int dato;
     float promedio;
-
 
     cargarMatriz(matriz);
     printf("\n\nMatriz de orden 'mxn': \n");
@@ -27,10 +29,30 @@ int main()
     mostrarMatriz(matrizRandom);
 
     suma = sumarMatriz(matriz);
-    printf("La suma de la matriz de orden 'mxn' es de: %d", suma);
+    printf("\nLa suma de la matriz de orden 'mxn' es de: %d", suma);
 
     promedio = promedioMatriz(matriz);
-    printf("El promedio de la matriz de orden 'mxn' es de: %f", promedio);
+    printf("\n\nEl promedio de la matriz de orden 'mxn' es de: %.2f", promedio);
+
+
+    printf("\nIngrese un dato para buscar en la matriz: ");
+    fflush(stdin);
+    scanf("%d", &dato);
+    flag = buscarMatriz(matriz, dato);
+
+    if(flag == 1)
+    {
+
+        printf("\nEl dato se encuentra dentro de la matriz");
+
+    }
+    else
+    {
+
+        printf("\nEl dato no se encuentra dentro de la matriz");
+
+    }
+
 
 }
 
@@ -91,16 +113,19 @@ void cargarMatrizRandom(int matriz[filas][columnas], int random[filas][columnas]
     }
 }
 
-int sumarMatriz(int matriz[filas][columnas]){
+int sumarMatriz(int matriz[filas][columnas])
+{
 
     int i;
     int j;
     int suma = 0;
     int num = 1;
 
-    for(i = 0;i < filas; i++){
+    for(i = 0; i < filas; i++)
+    {
 
-        for(j = 0;j < columnas; j++){
+        for(j = 0; j < columnas; j++)
+        {
 
             suma = suma + matriz[i][j];
         }
@@ -110,16 +135,19 @@ int sumarMatriz(int matriz[filas][columnas]){
     return suma;
 }
 
-float promedioMatriz(int matriz[filas][columnas]){
+float promedioMatriz(int matriz[filas][columnas])
+{
 
     int i;
     int j;
     float suma = 0;
     float promedio = 0;
 
-    for(i = 0; i < filas; i++){
+    for(i = 0; i < filas; i++)
+    {
 
-        for(j = 0; j < columnas; j++){
+        for(j = 0; j < columnas; j++)
+        {
 
             suma = suma + matriz[i][j];
 
@@ -130,3 +158,37 @@ float promedioMatriz(int matriz[filas][columnas]){
     promedio = suma / (filas * columnas);
 
     return promedio;
+}
+
+int buscarMatriz(int matriz[filas][columnas], int dato)
+{
+
+    int i,j;
+    int flag = 0;
+
+    for(i = 0; i < filas; i++)
+    {
+
+        for(j = 0; j < columnas; j++)
+        {
+
+            if(dato == matriz[i][j])
+            {
+
+                flag = 1;
+
+            }
+            else
+            {
+
+                flag = 0;
+
+            }
+        }
+    }
+
+    return flag;
+
+}
+
+
